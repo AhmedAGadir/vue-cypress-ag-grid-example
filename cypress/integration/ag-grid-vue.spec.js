@@ -26,18 +26,41 @@ describe('My ag-Grid tests', () => {
         cy.get('.ag-header-cell')
             .first()
             .click()
+            // .wait(500)
             .then(() => {
                 cy.get('.ag-cell[col-id="make"]')
                     .then(cells => {
-                        setTimeout(() => {
-                            expect(cells[0]).to.have.text('Ford');
-                            expect(cells[1]).to.have.text('Porsche');
-                            expect(cells[2]).to.have.text('Toyota');
-                        }, 500);
+                        // must sort in offset from DOM
+                        return cells.sort((a, b) =>
+                            a.getBoundingClientRect().y - b.getBoundingClientRect().y
+                        )
+                    })
+                    .then(cells => {
+                        expect(cells[0]).to.have.text('Ford');
+                        expect(cells[1]).to.have.text('Porsche');
+                        expect(cells[2]).to.have.text('Toyota');
                     });
-            })
-    })
-    it('filters for Toyota', () => {
 
+            })
+    });
+    it('filters for Toyota', () => {
+        cy.get('.ag-icon-menu')
+            .first()
+            .click()
+
+        cy.get('.ag-tab')
+            .then(tabs => tabs[1])
+            .click()
+
+        cy.get('.ag-filter-filter')
+            .type('Toyota{enter}')
+
+        cy.get('.ag-center-cols-container .ag-row')
+            .find(`[col-id="make"]`)
+            .then(cells => {
+                cells.each((_, cell) => {
+                    expect(cell).to.have.text('Toyota');
+                });
+            })
     });
 })

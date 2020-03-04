@@ -28,19 +28,19 @@ describe('My ag-Grid tests', () => {
             .click()
             // .wait(500)
             .then(() => {
-                cy.get('.ag-cell[col-id="make"]')
-                    .then(cells => {
-                        // must sort in offset from DOM
-                        return cells.sort((a, b) =>
-                            a.getBoundingClientRect().y - b.getBoundingClientRect().y
-                        )
+                cy.get('.ag-center-cols-container .ag-row')
+                    .then(rows => {
+                        return rows.sort((a, b) => {
+                            return +a.getAttribute('row-index') - +b.getAttribute('row-index');
+                        })
                     })
-                    .then(cells => {
-                        expect(cells[0]).to.have.text('Ford');
-                        expect(cells[1]).to.have.text('Porsche');
-                        expect(cells[2]).to.have.text('Toyota');
-                    });
-
+                    .then(sortedRows => {
+                        const EXPECTED_ORDER = ['Ford', 'Porsche', 'Toyota'];
+                        sortedRows.each((ind, row) => {
+                            let makeCell = row.querySelector('[col-id="make"]');
+                            expect(makeCell).to.have.text(EXPECTED_ORDER[ind]);
+                        })
+                    })
             })
     });
     it('filters for Toyota', () => {

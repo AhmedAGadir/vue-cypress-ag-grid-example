@@ -14,7 +14,7 @@ describe('My ag-Grid tests', () => {
         // our tests because Cypress will repeatedly run queries and assertions
         // until either an element is found or a timeout is reached (4000ms by default)
         // see https://docs.cypress.io/guides/core-concepts/introduction-to-cypress.html#1-The-element-is-found
-        cy.visit('http://localhost:8082');
+        cy.visit('http://localhost:8081');
     });
     it('renders the first row', () => {
         // { make: "Toyota", model: "Celica", price: 35000 },

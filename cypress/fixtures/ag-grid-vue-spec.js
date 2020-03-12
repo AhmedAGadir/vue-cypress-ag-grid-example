@@ -26,22 +26,22 @@ describe('My ag-Grid tests', () => {
         cy.get('.ag-header-cell')
             .first()
             .click()
-            // .wait(500)
-            .then(() => {
-                cy.get('.ag-center-cols-container .ag-row')
-                    .then(rows => {
-                        return rows.sort((a, b) => {
-                            return +a.getAttribute('row-index') - +b.getAttribute('row-index');
-                        })
-                    })
-                    .then(sortedRows => {
-                        const EXPECTED_ORDER = ['Ford', 'Porsche', 'Toyota'];
-                        sortedRows.each((ind, row) => {
-                            let makeCell = row.querySelector('[col-id="make"]');
-                            expect(makeCell).to.have.text(EXPECTED_ORDER[ind]);
-                        })
-                    })
+        // .wait(500)
+        // .then(() => {
+        cy.get('.ag-center-cols-container .ag-row')
+            .then(rows => {
+                return rows.sort((a, b) => {
+                    return +a.getAttribute('row-index') - +b.getAttribute('row-index');
+                })
             })
+            .then(sortedRows => {
+                const EXPECTED_ORDER = ['Ford', 'Porsche', 'Toyota'];
+                sortedRows.each((ind, row) => {
+                    let makeCell = row.querySelector('[col-id="make"]');
+                    expect(makeCell).to.have.text(EXPECTED_ORDER[ind]);
+                })
+            })
+        // })
     });
     it('filters for Toyota', () => {
         cy.get('.ag-icon-menu')

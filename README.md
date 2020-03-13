@@ -1,29 +1,18 @@
-# vue-cypress-ag-grid-example
+# Testing with ag-Grid | Vue.js & Cypress
 
 ## Project setup
+
+### Download the necessary packages:
 ```
 npm install
 ```
-
-### Compiles and hot-reloads for development
+### Run the application
 ```
 npm run serve
 ```
+### Open the Cypress Test Runner:
+```
+npm run cypress:open
+```
+then select ***ag-grid-vue-spec.js***
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

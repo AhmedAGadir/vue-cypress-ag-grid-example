@@ -1,5 +1,7 @@
 # Testing with ag-Grid | Vue.js & Cypress
 
+To view the test code go to `cypress/integration/ag-grid-vue-spec.js`.
+
 ### Download the necessary packages:
 ```
 npm install

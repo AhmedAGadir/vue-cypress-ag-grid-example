@@ -14,5 +14,5 @@ npm run serve
 ```
 npm run cypress:open
 ```
-then select ***ag-grid-vue-spec.js***
+Select ***ag-grid-vue-spec.js*** under intergration tests.
 
